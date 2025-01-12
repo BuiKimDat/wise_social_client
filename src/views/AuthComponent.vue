@@ -17,28 +17,30 @@
                         <div class="col-lg-6">
                             <div class="login-sec">
                                 <ul class="sign-control">
-                                    <li data-tab="tab-1" v-on:click="chooseType('login')" :class="{current : choseType == 'login'}"><a href="#" title="">Login</a></li>
-                                    <li data-tab="tab-2" v-on:click="chooseType('register')" :class="{current : choseType == 'register'}"><a href="#" title="">Register</a></li>
+                                    <li data-tab="tab-1" v-on:click="chooseType('login')" :class="{current : choseType == 'login'}"><a href="#" title="">サインイン</a></li>
+                                    <li data-tab="tab-2" v-on:click="chooseType('register')" :class="{current : choseType == 'register'}"><a href="#" title="">サインアップ</a></li>
                                 </ul>
                                 <div class="sign_in_sec" :class="{current : choseType == 'login'}" id="tab-1">
-                                    <h3>Login</h3>
+                                    <h3>サインイン</h3>
                                     <div class="form">
                                         <div class="row">
                                             <div class="col-lg-12 no-pdd">
                                                 <div class="sn-field">
-                                                    <input type="text" name="email" placeholder="Email" v-model="loginEmail">
-                                                    <i class="fa fa-user">{{ loginErrEmailMsg }}</i>
+                                                    <input type="email" name="email" placeholder="メール" v-model="loginEmail">
+                                                    <i class="fa fa-user"></i>
+                                                    <span class="text-danger msgError">{{ loginErrEmailMsg }}</span>
                                                 </div>
                                                 <!--sn-field end-->
                                             </div>
                                             <div class="col-lg-12 no-pdd">
                                                 <div class="sn-field">
                                                     <input type="password" name="password" placeholder="Password" v-model="loginPassword">
-                                                    <i class="fa fa-lock">{{ loginErrPasswordMsg }}</i>
+                                                    <i class="fa fa-lock"></i>
+                                                    <span class="text-danger msgError">{{ loginErrPasswordMsg }}</span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 no-pdd">
-                                                <button type="submit" value="submit" v-on:click="login()">Login</button>
+                                                <button type="submit" value="submit" v-on:click="login()">サインイン</button>
                                             </div>
                                         </div>
                                     </div>
@@ -97,9 +99,9 @@
                                                         <!--fgt-sec end-->
                                                     </div>
                                                 </div>
-                                                <div class="row col-lg-12 no-pdd">
+                                                <div class="col-lg-12 no-pdd row">
                                                     <button :class="{'cursor-not-allow' : this.registerTOS === false}" :disabled="this.registerTOS === false" v-on:click="registerValidation()">開始する</button>
-                                                    <img class="btn-register" :class="{'display-none': this.registerProcess == false}" height="40px" width="40px" src="/src/assets/loading_icon.gif" alt="">
+                                                    <img class="btn-register" :class="{'display-none' : this.registerProcess === false}" width="40px" height="40px" src="/src/assets/loading_icon.gif" alt="" srcset="">
                                                 </div>
                                             </div>
                                         </div>
@@ -156,7 +158,7 @@ import axios from 'axios';
                 loginTOS: false,
                 loginErrEmailMsg: '',
                 loginErrPasswordMsg: '',
-                loginProcess: false,
+                loginProcess: false
             }
         },
         /**
@@ -305,16 +307,17 @@ import axios from 'axios';
 
             login() {
                 if (this.loginEmail.length <= 0) {
-                    this.loginErrEmailMsg = "Email ユーザ名を入力してください";
-                }else{
+                    this.loginErrEmailMsg = "Email ユーザ名を入力してください。";
+                } else {
                     this.loginErrEmailMsg = "";
                 }
                 if (this.loginPassword.length <= 0) {
-                    this.loginErrPasswordMsg = "Password パスワードを入力してください";
-                }else{
+                    this.loginErrPasswordMsg = "Password を入力してください。";
+                } else {
                     this.loginErrPasswordMsg = "";
                 }
                 if (this.loginErrEmailMsg == "" && this.loginErrPasswordMsg == "") {
+                    // Call to function login
                     this.processLogin();
                 }
             },
@@ -344,12 +347,12 @@ import axios from 'axios';
              * Method post pass param
              * Regirect router /auth
              */
-             async register() {
+            async register() {
                 // Disabled button register
                 this.registerCheckAllow();
                 this.registerProcess = true;
                 try {
-                    const callRegisterAPI = await axios.post('http://wise_social_api.test/api/register', {
+                    const callRegisterAPI = await axios.post('http://localhost/wise_social_api/public/api/register', {
                         // Pass param to header
                         name: this.registerFullName,
                         email: this.registerEmail,
@@ -393,11 +396,9 @@ import axios from 'axios';
                     }).then(function (res) {
                         // Api response success
                         if (res.data.code == 200) {
-                            console.log(res.data.data.plainTextToken);
-
-                            //Save to session storage
+                            // Save to session storage
                             sessionStorage.setItem("token", res.data.data.plainTextToken);
-                            window.location.href = "/index";
+                            window.location.href = "/index"; 
                         } else {
                             alert(res.data.message);
                         }
@@ -411,7 +412,7 @@ import axios from 'axios';
                 }
                 // Enabled button register
                 this.loginProcess = false;
-            },
+            }
         },
     }
 </script>

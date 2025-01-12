@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    // import Vue from 'vue'
+    //import Vue from 'vue'
     import axios from 'axios'
     // import component1 from 'component1'
     // import component2 from 'component2'
@@ -37,7 +37,7 @@
         /***********************************************************************************************************
          ******************************* Pass data to child component **********************************************
          **********************************************************************************************************/
-        // prop: [variable1, variable2],
+        // props: [variable1, variable2],
         // components: {component1, component2},
         data() {
             /***********************************************************************************************************
@@ -105,17 +105,17 @@
              */
             async callAPI() {
                 try {
-                    const callAPI = await axios.get('http://DemoAPI.test/api/list-user', {
+                    const callAPI = await axios.get('http://localhost/DemoAPI/public/api/list-user', {
                         /************ Attach param for request here ***************/
                         headers: {
                             "Content-type" : "application/json",
-                            "Authorization": "Bearer 4|YrEQW2qgfEPb1UsWoUbB35H9HeQmqNzya02d2kOw4624e3c9"
+                            "Authorization": "Bearer 28|TK2GDxdOitONowsftHVRRJhZeYFBZR2tQwdJjoSKfe2d9037" 
                         }
                     });
                     if (callAPI.data.code == 200) {
                         this.users = callAPI.data.data;
                     } else {
-                        alert("Call api falled. please check again!");
+                        alert("Call api failed, please check again!");
                     }
                 } catch (err) {
                     console.log(err);
@@ -123,18 +123,18 @@
             },
             async deleteUser(id) {
                 try {
-                    const callAPI = await axios.delete('http://DemoAPI.test/api/delete-user/' + id, {
+                    const callAPI = await axios.delete('http://localhost/DemoAPI/public/api/delete-user/' + id, {
                         /************ Attach param for request here ***************/
                         headers: {
                             "Content-type" : "application/json",
-                            "Authorization": "Bearer 4|YrEQW2qgfEPb1UsWoUbB35H9HeQmqNzya02d2kOw4624e3c9"
+                            "Authorization": "Bearer 28|TK2GDxdOitONowsftHVRRJhZeYFBZR2tQwdJjoSKfe2d9037" 
                         }
                     });
                     this.callAPI();
                 } catch (err) {
                     console.log(err);
                 }
-            },
+            }
         },
     }
 </script>

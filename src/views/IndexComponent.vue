@@ -1,20 +1,19 @@
 <script setup lang="ts">
+import ChatComponent from '@/components/ChatComponent.vue';
+import FriendRequestComponent from '@/components/FriendRequestComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
-import UserProfileComponent from '@/components/UserProfileComponent.vue';
-import SuggestionComponent from '@/components/SuggestionComponent.vue';
-import TimelineComponent from '@/components/TimelineComponent.vue';
 import MostFollowerComponent from '@/components/MostFollowerComponent.vue';
 import MyFavouriteComponent from '@/components/MyFavouriteComponent.vue';
-import FriendRequestComponent from '@/components/FriendRequestComponent.vue';
-import ChatComponent from '@/components/ChatComponent.vue';
+import SuggestionComponent from '@/components/SuggestionComponent.vue';
+import TimelineComponent from '@/components/TimelineComponent.vue';
+import UserProfileComponent from '@/components/UserProfileComponent.vue';
 </script>
 
 <template>
     <div class="wrapper">
-        <!--Begin Header-->
+        <!-- Begin header -->
         <HeaderComponent/>
-        <!--End header-->
-
+        <!-- End header -->
         <main>
             <div class="main-section">
                 <div class="container">
@@ -22,17 +21,11 @@ import ChatComponent from '@/components/ChatComponent.vue';
                         <div class="row">
                             <div class="col-lg-3 col-md-4 pd-left-none no-pd">
                                 <div class="main-left-sidebar no-margin">
-                                    
-                                    <!--Begin User data-->
+                                    <!-- Begin User data -->
                                     <UserProfileComponent/>
-                                    <!--End User data-->
-
                                     <!--user-data end-->
-
-                                    <!--Begin User data-->
+                                    <!-- Begin Suggetion -->
                                     <SuggestionComponent/>
-                                    <!--End User data-->
-                                    
                                     <!--suggestions end-->
                                     <div class="tags-sec full-width">
                                         <div class="cp-sec">
@@ -44,31 +37,21 @@ import ChatComponent from '@/components/ChatComponent.vue';
                                 </div>
                                 <!--main-left-sidebar end-->
                             </div>
-                            
-                            <!--Begin User data-->
-                            <TimelineComponent/>
-                            <!--End User data-->
-
+                            <!-- Begin timeline -->
+                            <TimelineComponent/> 
+                            <!-- End timeline -->
                             <div class="col-lg-3 pd-right-none no-pd">
                                 <div class="right-sidebar">
-                                    
-                                    <!--Begin User data-->
-                                    <MostFollowerComponent/>
-                                    <!--End User data-->
-
+                                    <!-- Begin most followers -->
+                                    <MostFollowerComponent/> 
                                     <!--widget-about end-->
                                     <!-- Top jobs -->
-                                    
-                                    <!--Begin User data-->
+                                    <!-- Begin favourite -->
                                     <MyFavouriteComponent/>
-                                    <!--End User data-->
-
+                                    <!--End my favourite  -->
                                     <!--Request friend People-->
-                                    
-                                    <!--Begin User data-->
                                     <FriendRequestComponent/>
-                                    <!--End User data-->
-
+                                    <!-- End friend request -->
                                 </div>
                                 <!--right-sidebar end-->
                             </div>

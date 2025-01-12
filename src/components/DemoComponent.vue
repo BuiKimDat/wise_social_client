@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="card-body">
                 <h1>{{ msg }}</h1>
-                <h3>Comment box:{{ txtMSG }}</h3>
-                <button v-on:click="$emit('clickMe', 'Dữ liệu truyền từ con sang cha')">
+                <h3>Comment box: {{ txtMSG }}</h3>
+                <button v-on:click="$emit('clickMe', 'Du lieu truyen ti con sang cha')">
                     Emit data to parent component
                 </button>
             </div>
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-    // import Vue from 'vue'
-    // import axios from 'axios'
+    //import Vue from 'vue'
+    //import axios from 'axios'
     // import component1 from 'component1'
     // import component2 from 'component2'
 
@@ -57,6 +57,7 @@
              *********************** Initialize data when this component is used. **************************************
              **********************************************************************************************************/
             console.log('Init created component and call to function get data from api server.');
+            this.joinRoom();
         },
         mounted() {
             /***********************************************************************************************************
@@ -86,13 +87,6 @@
              */
             defaultFunction() {
                 this.msg = "Replace message here!";
-            },
-            // Leave a room
-            leaveRoom() {
-                this.$socket.emit('ClientSendCommentToServer', {
-                    transaction_id: 1
-                    // Pass param obj]
-                });
             },
             // Join a room
             joinRoom() {

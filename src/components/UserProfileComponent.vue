@@ -1,5 +1,3 @@
-
-
 <template>
     <div class="user-data full-width">
         <div class="user-profile">
@@ -19,23 +17,23 @@
         <ul class="user-fw-status">
             <li>
                 <!-- Following -->
-                <h4>Following</h4>
-                <span>{{this.users.following}}</span>
+                <h4>フォロー中</h4>
+                <span>{{ this.users.following }}</span>
             </li>
             <li>
                 <!-- Followers -->
-                <h4>Followers</h4>
-                <span>{{this.users.followers}}</span>
+                <h4>フォロワー</h4>
+                <span>{{ this.users.followers }}</span>
             </li>
             <li>
-                <a :href="'my-profile?user_id={{ this.users.id }}'" title="">My Profile</a>
+                <a :href="'/my-profile?user_id=' + this.users.id " title="">プロフィールを表示</a>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-    // import Vue from 'vue'
+    //import Vue from 'vue'
     import axios from 'axios'
     // import component1 from 'component1'
     // import component2 from 'component2'
@@ -44,7 +42,7 @@
         /***********************************************************************************************************
          ******************************* Pass data to child component **********************************************
          **********************************************************************************************************/
-        // prop: [variable1, variable2],
+        // props: [variable1, variable2],
         // components: {component1, component2},
         data() {
             /***********************************************************************************************************
@@ -116,34 +114,32 @@
                         /************ Attach param for request here ***************/
                         headers: {
                             "Content-type" : "application/json",
-                            "Authorization": "Bearer " + this.token,
+                            "Authorization": "Bearer " + this.token 
                         }
                     });
                     if (callAPI.data.code == 200) {
                         this.users = callAPI.data.data;
-                        
                     } else {
-                        alert("Call api falled. please check again!");
+                        alert("Call api failed, please check again!");
                     }
-
                 } catch (err) {
                     console.log(err);
                 }
             },
             async deleteUser(id) {
                 try {
-                    const callAPI = await axios.delete('http://DemoAPI.test/api/delete-user/' + id, {
+                    const callAPI = await axios.delete('http://localhost/DemoAPI/public/api/delete-user/' + id, {
                         /************ Attach param for request here ***************/
                         headers: {
                             "Content-type" : "application/json",
-                            "Authorization": "Bearer 4|YrEQW2qgfEPb1UsWoUbB35H9HeQmqNzya02d2kOw4624e3c9"
+                            "Authorization": "Bearer 28|TK2GDxdOitONowsftHVRRJhZeYFBZR2tQwdJjoSKfe2d9037" 
                         }
                     });
                     this.callAPI();
                 } catch (err) {
                     console.log(err);
                 }
-            },
+            }
         },
     }
 </script>
@@ -153,4 +149,3 @@
 * Custom local style css
 */
 </style>
-
